@@ -5,11 +5,8 @@ use std::io::{BufRead};
 use std::path::Path;
 
 fn main() {
-    let mut max_elf: i32 = 0;
-    let mut current_elf: i32 = 0;
-    let mut max_calories: i32 = 0;
+    let mut max_calories: [i32; 3] = [0, 0, 0];
     let mut current_calories: i32 = 0;
-
 
     // File hosts must exist in current path before this procedure output
     if let Ok(lines) = read_lines("input.txt") {
@@ -18,12 +15,14 @@ fn main() {
             if let Ok(number) = line {
                 // Check if new line
                 if number.trim().is_empty() {
-                    if current_calories > max_calories {
-                        max_calories = current_calories;
-                        max_elf = current_elf;
+                    max_calories.sort();
+                    for i in 0..max_calories.len() {
+                        if current_calories > max_calories[i]{
+                            max_calories[i] = current_calories;
+                            break;
+                        }
                     }
                     current_calories = 0;
-                    current_elf += 1;
                 }
                 else{
                     let snack = number.trim().parse::<i32>().unwrap();
@@ -32,7 +31,12 @@ fn main() {
             }
         }
     }
-    println!("The strongest elf is elf number {}. That elf was carrying {} calories", max_elf + 1, max_calories);
+    max_calories.sort();
+    println!("The third elf is caring {}, the second {} and the first {} totaling {}", 
+        max_calories[0],
+        max_calories[1],
+        max_calories[2], 
+        max_calories[0]+max_calories[1] + max_calories[2]);
 }
 
 // The output is wrapped in a  Result to allow matching on errors
