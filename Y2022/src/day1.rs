@@ -1,6 +1,6 @@
 use utils;
 
-pub fn day1(filename: String) -> utils::Answer{
+pub fn solve(filename: String) -> utils::Answer{
     let mut max_calories: [i32; 3] = [0, 0, 0];
     let mut current_calories: i32 = 0;
 
