@@ -1,23 +1,5 @@
-use std::io;
+use utils::{read_lines, Answer};
 
-use std::fs::File;
-use std::io::{BufRead};
-use std::path::Path;
-
-// A = Rock
-// B = Paper
-// C = Scissors
-
-// points for the shape I select
-// 1 for X (Rock)
-// 2 for Y (Paper)
-// 3 for Z (Scissors)
-
-// X > C
-// Y > A
-// Z > B
-
-// 
 fn compete_part1(elf: &str, me: &str) -> u32{
     let mut point: u32 = 0;
     if me == "X"{
@@ -90,12 +72,11 @@ fn compete_part2(elf: &str, me: &str) -> u32{
     return point;
 }
 
-
-fn main() {
+pub fn solve(filename: String) -> Answer {
     let mut points1: u32 = 0;
     let mut points2: u32 = 0;
 
-    if let Ok(lines) = read_lines("input.txt") {
+    if let Ok(lines) = read_lines(filename) {
         for line in lines {
             if let Ok(elf_me) = line{
                 // println!("{}", elf_me);
@@ -105,15 +86,5 @@ fn main() {
             }
         }
     }
-    println!("Part1 points {points1}");
-    println!("Part2 points {points2}");
-}
-
-
-// The output is wrapped in a  Result to allow matching on errors
-// Returns an Iterator to the Reader of the lines of the file
-fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<Path>, {
-    let file = File::open(filename)?;
-    Ok(io::BufReader::new(file).lines())
+    return Answer {challenge1: points1 as i64, challenge2: points2 as i64};
 }
