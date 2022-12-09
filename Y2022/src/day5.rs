@@ -1,7 +1,7 @@
 use utils::{Answer, collect_lines_in_file};
-use std::{collections::VecDeque, default};
+use std::{collections::VecDeque};
 
-pub fn solve(filename: String) -> Answer{
+pub fn solve(filename: String) -> Answer<String>{
     let mut stacks: [VecDeque<char>; 9] = Default::default();
     let mut instructions: Vec<Instruction> = Vec::new();
     let mut stacks2: [VecDeque<char>; 9] = Default::default();
@@ -11,19 +11,20 @@ pub fn solve(filename: String) -> Answer{
     follow_instructions_on_stack_challenge1(instructions, &mut stacks);
     follow_instructions_on_stack_challenge2(instructions2, &mut stacks2);
 
+    let mut a1: String = String::from("");
+    let mut a2: String = String::from("");
     for stack in stacks {
-        println!("{}", stack[0])
+        a1.push(stack[0]);
     }
-    println!("");
     for stack in stacks2 {
-        println!("{}", stack[0])
+        a2.push(stack[0]);
     }
-    return Answer{challenge1:0, challenge2:0};
+    return Answer{challenge1:Some(a1), challenge2:Some(a2)};
 }
 
 fn follow_instructions_on_stack_challenge1(instructions: Vec<Instruction>, stacks: &mut [VecDeque<char>]){
     for instruction in instructions {
-        for _ in (0..instruction.nb) {
+        for _ in 0..instruction.nb {
             let ch: char = stacks[instruction.from_stack-1].pop_front().unwrap();
             stacks[instruction.to_stack-1].push_front(ch);
         }
@@ -33,7 +34,7 @@ fn follow_instructions_on_stack_challenge1(instructions: Vec<Instruction>, stack
 fn follow_instructions_on_stack_challenge2(instructions: Vec<Instruction>, stacks: &mut [VecDeque<char>]){
     for instruction in instructions {
         let  mut tmp: VecDeque<char> = Default::default();
-        for _ in (0..instruction.nb) {
+        for _ in 0..instruction.nb {
             let ch: char = stacks[instruction.from_stack-1].pop_front().unwrap();
             tmp.push_front(ch);
         }

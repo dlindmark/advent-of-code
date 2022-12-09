@@ -1,6 +1,6 @@
 use utils;
 
-pub fn solve(filename: String) -> utils::Answer{
+pub fn solve(filename: String) -> utils::Answer<i64>{
     let mut max_calories: [i32; 3] = [0, 0, 0];
     let mut current_calories: i32 = 0;
 
@@ -28,5 +28,5 @@ pub fn solve(filename: String) -> utils::Answer{
         }
     }
     max_calories.sort();
-    return utils::Answer { challenge1: max_calories[2] as i64, challenge2: (max_calories[0]+max_calories[1] + max_calories[2]) as i64 }
+    return utils::Answer { challenge1: Some(max_calories[2] as i64), challenge2: Some((max_calories[0]+max_calories[1] + max_calories[2]) as i64) }
 }

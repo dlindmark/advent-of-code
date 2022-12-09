@@ -1,7 +1,7 @@
 use utils::{Answer, collect_lines_in_file};
 use std::cmp::{min, max};
 
-pub fn solve(filename: String) -> Answer{
+pub fn solve(filename: String) -> Answer<i64>{
     let lines: Vec<String> = collect_lines_in_file(filename);
     // println!("{}", lines[0].split(","));
     let lines2: Vec<Vec<String>> = lines.into_iter()
@@ -22,7 +22,7 @@ pub fn solve(filename: String) -> Answer{
     
     
 
-    return Answer{challenge1:challenge1(&ranges), challenge2: challenge2(&ranges)};
+    return Answer{challenge1:Some(challenge1(&ranges)), challenge2: Some(challenge2(&ranges))};
 }
 
 fn within_check(range1: (i32, i32), range2: (i32, i32)) -> i32 {
