@@ -4,6 +4,7 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 fn main() {
     let a1: Answer = day1::solve("day1.txt".to_string());
@@ -16,6 +17,9 @@ fn main() {
     println!("Day3: {:?}", a3);
     
     let a4: Answer = day4::solve("day4.txt".to_string());
+    println!("Day4: {:?}", a4);
+
+    let a6: Answer = day5::solve("day5.txt".to_string());
     println!("Day4: {:?}", a4);
 }
 
