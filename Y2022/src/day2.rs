@@ -72,7 +72,7 @@ fn compete_part2(elf: &str, me: &str) -> u32{
     return point;
 }
 
-pub fn solve(filename: String) -> Answer {
+pub fn solve(filename: String) -> Answer<i64> {
     let mut points1: u32 = 0;
     let mut points2: u32 = 0;
 
@@ -86,5 +86,5 @@ pub fn solve(filename: String) -> Answer {
             }
         }
     }
-    return Answer {challenge1: points1 as i64, challenge2: points2 as i64};
+    return Answer {challenge1: Some(points1 as i64), challenge2: Some(points2 as i64)};
 }

@@ -4,9 +4,9 @@ use std::io::{BufRead};
 use std::path::Path;
 
 #[derive(Debug)]
-pub struct Answer {
-    pub challenge1: i64,
-    pub challenge2: i64
+pub struct Answer<T> {
+    pub challenge1: Option<T>,
+    pub challenge2: Option<T>
 }
 
 

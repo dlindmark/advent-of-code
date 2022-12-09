@@ -1,7 +1,7 @@
 use utils::{Answer, read_lines};
 
-pub fn solve(filename: String) -> Answer{
-    return Answer{challenge1: challenge1(&filename), challenge2: challenge2(&filename)};
+pub fn solve(filename: String) -> Answer<i64>{
+    return Answer{challenge1: Some(challenge1(&filename)), challenge2: Some(challenge2(&filename))};
 }
 
 fn get_priority(item: char) -> i64 {
