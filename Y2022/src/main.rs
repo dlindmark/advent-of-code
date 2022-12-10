@@ -5,6 +5,7 @@ mod day2;
 mod day3;
 mod day4;
 mod day5;
+mod day6;
 
 fn main() {
     let a1: Answer<i64> = day1::solve("day1.txt".to_string());
@@ -21,6 +22,9 @@ fn main() {
 
     let a5: Answer<String> = day5::solve("day5.txt".to_string());
     println!("Day5: {:?}", a5);
+
+    let a6: Answer<usize> = day6::solve("day6.txt".to_string());
+    println!("Day6: {:?}", a6);
 }
 
 #[cfg(test)]
@@ -59,5 +63,12 @@ mod tests {
         let a: Answer<String> = day5::solve("day5.txt".to_string());
         assert_eq!(a.challenge1.unwrap(), String::from("RLFNRTNFB"));
         assert_eq!(a.challenge2.unwrap(), String::from("MHQTLJRLB"));
+    }
+
+    #[test]
+    fn day6() {
+        let a: Answer<usize> = day6::solve("day6.txt".to_string());
+        assert_eq!(a.challenge1.unwrap(), 1965);
+        assert_eq!(a.challenge2.unwrap(), 2773);
     }
 }
